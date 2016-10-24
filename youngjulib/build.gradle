@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.3.4'
+    }
+}
+
+publish {
+    userOrg = 'choyoungju'
+    groupId = 'com.hanains.it'
+    artifactId = 'youngjulib'
+    publishVersion = '0.3.4'
+    desc = 'Oh hi, this is a nice description for a project, right?'
+    website = 'https://github.com/choyoungju'
+
+
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+}
+
+
+
+//bintray {
+//    user = 'youngju'
+//    key = 'ea46920eecc6091b46178ce14de7da3790b4c807'
+//    pkg {
+//        repo = 'generic'
+//        name = 'youngjulib'
+//        userOrg = 'youngju'
+//        licenses = ['Apache-2.0']
+////        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+//    }
+//}
